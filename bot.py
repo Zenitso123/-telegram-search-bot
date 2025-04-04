@@ -8,6 +8,7 @@ import urllib.parse
 import random
 import time
 import os
+from flask import Flask
 
 # تنظیم کدگذاری به UTF-8
 sys.stdout.reconfigure(encoding='utf-8')
@@ -32,6 +33,13 @@ USER_AGENTS = [
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15',
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.59'
 ]
+
+# Create Flask app for health check
+app = Flask(__name__)
+
+@app.route('/')
+def health_check():
+    return 'Bot is running!'
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """دستور شروع"""
